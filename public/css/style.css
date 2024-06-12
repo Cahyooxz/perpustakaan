@@ -1,0 +1,46 @@
+*{
+  padding: 0;
+  margin: 0;
+  font-family: "Montserrat", sans-serif;
+}
+.form-inputs{
+  padding: .375rem .75rem;
+  border: #a4a4a4 solid 2px;
+  border-radius: 8px;
+  transition: all ease-in;
+}
+.form-inputs:focus{
+  color: #AD88C6; 
+  border-color: #AD88C6;
+  outline: 0;
+  box-shadow: 0 0 0 .25rem #E1AFD1;
+  transition-duration: 0.15s;
+}
+/* Default label styling */
+.form-label {
+  color: black;
+}
+
+/* Focused label styling */
+.form-label.focused {
+  color: #7469B6;
+}
+
+.button{
+  padding: 8px 3px;
+  border: none;
+  border-radius: 8px;
+}
+.text-purple{
+  color: #7469B6;
+}
+.text-purple:hover{
+  color: #665aac;
+}
+.btn-purple{
+  color: white;
+  background-color: #7469B6;
+}
+.btn-purple:hover{
+  background-color: #3b3465;
+}
