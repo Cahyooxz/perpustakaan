@@ -31,8 +31,11 @@
   border: none;
   border-radius: 8px;
 }
+.bg-purple{
+  background-color: #6d54ff;
+}
 .text-purple{
-  color: #7469B6;
+  color: #6d54ff;
 }
 .text-purple:hover{
   color: #665aac;
@@ -43,4 +46,16 @@
 }
 .btn-purple:hover{
   background-color: #3b3465;
+}
+.border-purple{
+  border: #7469B6 solid;
+}
+.book-cover {
+  width: 100%;
+  height: 400px;
+}
+.book-cover img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }

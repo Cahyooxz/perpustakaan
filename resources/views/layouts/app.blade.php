@@ -18,8 +18,7 @@
     @vite(['resources/views/app.blade', 'resources/views/login.blade','css/style.css'])
     @include('partials.navbar')
     <div class="container">
-        <div class="row">
-        </div>
+        @yield('content')
     </div>
 </body>
 <script src="{{ asset('js/script.js') }}"></script>
