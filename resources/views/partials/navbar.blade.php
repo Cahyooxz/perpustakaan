@@ -7,10 +7,13 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
-          <a class="nav-link" aria-current="page" href="#">Dashboard</a>
+          <a class="nav-link" aria-current="page" href="{{ route('dashboard') }}">Dashboard</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" aria-current="page" href="#">Pinjam Buku</a>
+          <a class="nav-link" aria-current="page" href="{{ route('buku.index') }}">Daftar Buku</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" aria-current="page" href="{{ route('peminjaman.index') }}">Pinjam Buku</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" aria-current="page" href="#">Wishlist </a>

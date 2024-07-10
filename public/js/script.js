@@ -1,3 +1,33 @@
+$(document).ready(function() {
+    $('#example').DataTable({
+    lengthMenu:[
+        [10, 25, 50, -1], // Nilai -1 berarti semua data
+        [10, 25, 50, "All"] // Label yang ditampilkan untuk opsi
+    ],
+        language: {
+            emptyTable: "Tidak ada data yang tersedia di tabel",
+            info: "Menampilkan _START_ sampai _END_ dari _TOTAL_ entri",
+            infoEmpty: "Menampilkan 0 sampai 0 dari 0 entri",
+            infoFiltered: "(disaring dari _MAX_ total entri)",
+            lengthMenu: "Tampilkan _MENU_ entri",
+            loadingRecords: "Memuat...",
+            processing: "Sedang diproses...",
+            search: "Cari:",
+            zeroRecords: "Tidak ada catatan yang cocok ditemukan",
+            paginate: {
+                first: "Pertama",
+                last: "Terakhir",
+                next: "Berikutnya",
+                previous: "Sebelumnya"
+            },
+            aria: {
+                sortAscending: ": aktifkan untuk mengurutkan kolom naik",
+                sortDescending: ": aktifkan untuk mengurutkan kolom turun"
+            }
+        }
+    });
+});
+
 document.addEventListener('DOMContentLoaded', function() {
   var inputs = document.querySelectorAll('.form-inputs');
 

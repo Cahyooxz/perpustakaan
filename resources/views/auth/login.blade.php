@@ -17,7 +17,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
         rel="stylesheet">
 </head>
-
 <body>
     @vite(['resources/views/app.blade', 'resources/views/login.blade', 'css/style.css'])
     <div class="container">

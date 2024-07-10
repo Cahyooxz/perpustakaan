@@ -10,7 +10,6 @@
   transition: all ease-in;
 }
 .form-inputs:focus{
-  color: #AD88C6; 
   border-color: #AD88C6;
   outline: 0;
   box-shadow: 0 0 0 .25rem #E1AFD1;
@@ -39,6 +38,9 @@
 }
 .text-purple:hover{
   color: #665aac;
+}
+.bg-sec-purple{
+  background-color:  #afa1ff;
 }
 .btn-purple{
   color: white;

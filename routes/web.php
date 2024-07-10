@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\BukuController;
+use App\Http\Controllers\PeminjamanController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -20,7 +22,15 @@ Route::get('/', function () {
 
 Route::get('/dashboard', function () {
     return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+})->middleware(['auth', 'verified','role:petugas|admin'])->name('dashboard');
+
+Route::get('/peminjaman_buku',[PeminjamanController::class,'index'])->name('peminjaman.index');
+Route::delete('/peminjaman_buku/delete/{id}',[PeminjamanController::class,'destroy'])->name('peminjaman.destroy');
+
+Route::get('/daftar_buku',[BukuController::class,'index'])->name('buku.index');
+Route::get('/add_daftar_buku',[BukuController::class,'create'])->name('buku.create');
+Route::get('/add_daftar_buku/detail/{id}',[BukuController::class,'show'])->name('buku.show');
+Route::post('/add_daftar_buku/save',[BukuController::class,'store'])->name('buku.store');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
