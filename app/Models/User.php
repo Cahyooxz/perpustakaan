@@ -46,4 +46,8 @@ class User extends Authenticatable
     public function peminjaman(){
         return $this->hasMany(Peminjaman::class);
     }
+
+    public function wishlist(){
+        return $this->hasMany(Wishlist::class);
+    }
 }

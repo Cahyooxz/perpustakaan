@@ -14,8 +14,17 @@ class BukuController extends Controller
      */
     public function index()
     {
+        // $buku = Buku::select('id','judul')->where('judul','like','%'.'tes'.'%')->get();
         $buku = Buku::all();
         return view('buku.index',[
+            'buku' => $buku
+        ]);
+    }
+    public function user_index()
+    {
+        // $buku = Buku::select('id','judul')->where('judul','like','%'.'tes'.'%')->get();
+        $buku = Buku::all();
+        return view('buku.user_index',[
             'buku' => $buku
         ]);
     }
@@ -42,16 +51,32 @@ class BukuController extends Controller
             'stok_buku' => 'required',
         ]);
 
-        $data = [
-            'judul' => $request->judul_buku,
-            'penulis' => $request->penulis_buku,
-            'penerbit' => $request->penerbit_buku,
-            'tahun' => $request->tahun_terbit,
-            'deskripsi' => $request->deskripsi_buku,
-            'stok' => $request->stok_buku,
-        ];
-
-
+        if($request->file('cover_buku')){
+            $image = $request->file('cover_buku');
+            $image->storeAs('public/buku', $image->hashName());
+    
+    
+            $data = [
+                'judul' => $request->judul_buku,
+                'penulis' => $request->penulis_buku,
+                'penerbit' => $request->penerbit_buku,
+                'tahun' => $request->tahun_terbit,
+                'deskripsi' => $request->deskripsi_buku,
+                'stok' => $request->stok_buku,
+                'cover' => $image->hashName(),
+            ];
+        }
+        else{
+            $data = [
+                'judul' => $request->judul_buku,
+                'penulis' => $request->penulis_buku,
+                'penerbit' => $request->penerbit_buku,
+                'tahun' => $request->tahun_terbit,
+                'deskripsi' => $request->deskripsi_buku,
+                'stok' => $request->stok_buku,
+            ];
+        }
+        
         $data_simpan = Buku::create($data);
 
         if($data_simpan){
@@ -88,8 +113,17 @@ class BukuController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Buku $buku)
+    public function destroy($id)
     {
-        //
+        $buku = Buku::findOrFail($id);
+        $buku->delete();
+        
+        return redirect()->route('buku.index')->with('success','Data berhasil dihapus');
+    }
+
+    public function pinjaman_user(){
+        $buku =Buku::all();
+        
+        return view('buku.user_index');
     }
 }

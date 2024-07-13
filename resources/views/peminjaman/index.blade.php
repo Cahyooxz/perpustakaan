@@ -1,12 +1,5 @@
 @extends('layouts.app')
 @section('content')
-<script>
-    Swal.fire({
-        title: "Good job!",
-        text: "You clicked the button!",
-        icon: "success"
-      });
-</script>
 <div class="row">
   <div class="col-12 mt-5">
     <div class="d-flex justify-content-end">
@@ -16,7 +9,7 @@
     </div>
     <h4>Daftar Peminjaman Perpustakaan</h4>
     <div class="table-responsive">
-      <table class="table" id="example">
+      <table class="table" id="peminjaman">
         <thead>
           <tr>
             <th>ID</th>

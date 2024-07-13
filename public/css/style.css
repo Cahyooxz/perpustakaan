@@ -1,7 +1,7 @@
 *{
   padding: 0;
   margin: 0;
-  font-family: "Montserrat", sans-serif;
+  font-family: "Poppins", sans-serif;
 }
 .form-inputs{
   padding: .375rem .75rem;
@@ -24,7 +24,6 @@
 .form-label.focused {
   color: #7469B6;
 }
-
 .button{
   padding: 8px 3px;
   border: none;
@@ -40,7 +39,7 @@
   color: #665aac;
 }
 .bg-sec-purple{
-  background-color:  #afa1ff;
+  background-color: #afa1ff;
 }
 .btn-purple{
   color: white;
@@ -53,11 +52,53 @@
   border: #7469B6 solid;
 }
 .book-cover {
+  width: 150px;
+  height: 200px;
+}
+.book-cover-show {
   width: 100%;
   height: 400px;
+}
+.book-cover-show img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.book-cover1 {
+  width: 70%;
+  height: 400px;
+}
+.book-cover1 img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 .book-cover img {
   width: 100%;
   height: 100%;
   object-fit: cover;
 }
+.lh-0{
+  line-height: 0 !important;
+}
+@keyframes fadeIn {
+  from{
+    filter: opacity(0);
+    transform: translateX(-20px);
+  }
+  to{
+    filter: opacity(100);
+    transform: translateX(0);
+  }
+}
+
+.saturate{
+  filter: saturate(0);
+}
+
+.stok{
+  width: 100px;
+}
+.shadow-card-book{
+  box-shadow: 10px 10px #6d54ff;
+} 

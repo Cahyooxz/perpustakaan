@@ -17,6 +17,7 @@ class UserSeeder extends Seeder
             'name' => 'admin',
             'email' => 'admin@gmail.com',
             'password' => 'admin',
+            'role' => 1,
         ]);
         $admin->assignRole('admin');
 
@@ -24,6 +25,7 @@ class UserSeeder extends Seeder
             'name' => 'petugas',
             'email' => 'petugas@gmail.com',
             'password' => 'petugas',
+            'role' => 2,
         ]);
         $petugas->assignRole('petugas');
 
@@ -31,6 +33,7 @@ class UserSeeder extends Seeder
             'name' => 'siswa',
             'email' => 'siswa@gmail.com',
             'password' => 'siswa',
+            'role' => 3,
         ]);
         $siswa->assignRole('siswa');
     }

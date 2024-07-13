@@ -2,8 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Buku;
 use App\Models\Peminjaman;
+use App\Models\Wishlist;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class PeminjamanController extends Controller
 {
@@ -12,9 +16,25 @@ class PeminjamanController extends Controller
      */
     public function index()
     {
-        $peminjaman = Peminjaman::all();
+        $peminjaman = Peminjaman::with(['buku','user'])->get();
         return view('peminjaman.index',[
             'peminjaman' => $peminjaman
+        ]);
+    }
+    
+    public function user_index(Request $request)
+    {
+        $wishlist = Wishlist::where('user_id',Auth::user()->id)->get();
+        $buku = Buku::query();
+        if($request->has('search')){
+            $buku->where('judul','LIKE','%'.$request->search.'%');
+        }
+
+        $buku = $buku->get();
+        
+        return view('peminjaman.user_index',[
+            'buku' => $buku,
+            'wishlist' => $wishlist
         ]);
     }
 
@@ -31,15 +51,35 @@ class PeminjamanController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $user = Auth::user()->id;
+        $buku = $request->id_buku;
+
+        $punyabuku = Peminjaman::where('buku_id',$request->id_buku)->get();
+
+        if($punyabuku->isEmpty()){
+            $data = Peminjaman::create([
+               'user_id' => $user,
+               'buku_id' => $buku,
+               'tanggal_peminjaman' => Carbon::now(),
+               'tanggal_pengembalian' => Carbon::now()->addWeeks(2),
+               'status' => 1,
+            ]);
+            return redirect()->route('peminjaman.show')->with('success','Buku berhasil dipinjam!');
+        }
+        else{
+            return redirect()->route('buku.show',['id' => $buku])->with('fail_pinjam','kamu udah pinjam buku ini :) ');
+        } 
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Peminjaman $peminjaman)
+    public function show()
     {
-        //
+        $bukusaya = Peminjaman::with(['user','buku'])->where('user_id',Auth::user()->id)->get();
+        return view('peminjaman.user_show',[
+            'buku' => $bukusaya
+        ]);
     }
 
     /**

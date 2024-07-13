@@ -1,19 +1,19 @@
 @extends('layouts.app')
-<div class="container-fluid">
-    <div class="container">
-        <div class="row min-vh-100 d-flex align-items-center justify-content-center">
-            <div class="col-6">
-                <h3 class="fw-bold text-purple">Halo, Selamat Datang di Perpustakaan</h3>
-            </div>
-            <div class="col-6 text-center">
-                <img src="{{ asset('img/dashboard.gif') }}" alt="" class="w-50">
-            </div>
-        </div>
-    </div>
-</div>
 @section('content')
 <div class="row mb-5" style="margin-top: 100px">
-    <h4 class="fw-semibold text-center mb-5">Cari Buku Kesukaanmu..</h4>
+    <div class="col-12 text-center mb-5">
+        <h4 class="fw-semibold text-center mb-5"><i class="bi bi-journal-bookmark-fill me-3"></i>Cari Buku Kesukaanmu..</h4>
+        <form action="{{ route('peminjaman.user_index') }}" method="GET">
+            <div class="row">
+                <div class="col-11">
+                    <input type="text" class="form-control" name="search" value="{{ request()->input('search') }}">
+                </div>
+                <div class="col-1">
+                    <button type="submit" class="button btn-purple px-3"><i class="bi bi-search"></i></button>
+                </div>
+            </div>
+        </form>
+    </div>
     @foreach ($buku as $d)
         @if($d->stok >= 1)
         <div class="col-6 col-md-6 col-lg-3 mb-3">
@@ -84,8 +84,5 @@
         </div>
         @endif
     @endforeach
-    <div class="col-12 col-md-6 col-lg-3 mt-5 mb-5 mt-md-0 mb-md-0 d-flex justify-content-center align-items-center flex-column">
-        <p class="text-decoration-none fw-bold fs-2 text-center text-dark">Dan Masih Banyak Lagi!</p>
-    </div>
 </div>
 @endsection

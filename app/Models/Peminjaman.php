@@ -15,6 +15,9 @@ class Peminjaman extends Model
       'user_id',
       'buku_id',
       'status',
+      'tanggal_peminjaman',
+      'tanggal_pengembalian',
+      'status',
     ];
     protected $casts = [
       'tanggal_peminjaman' => 'datetime',
@@ -25,5 +28,17 @@ class Peminjaman extends Model
     }
     public function user(){
       return $this->belongsTo(User::class);
+    }
+
+    public static function booted(){
+      static::created(function ($peminjaman){
+        $buku = Buku::where('id',$peminjaman->buku_id)->first();
+
+        if($buku->stok >= 1){
+          $buku->update([
+            'stok' => $buku->stok - 1
+          ]);
+        }
+      });
     }
 }

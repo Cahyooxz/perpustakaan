@@ -1,16 +1,4 @@
 @extends('layouts.app')
-<div class="container-fluid">
-    <div class="container">
-        <div class="row min-vh-100 d-flex align-items-center justify-content-center">
-            <div class="col-6">
-                <h3 class="fw-bold text-purple">Halo, Selamat Datang di Perpustakaan</h3>
-            </div>
-            <div class="col-6 text-center">
-                <img src="{{ asset('img/dashboard.gif') }}" alt="" class="w-50">
-            </div>
-        </div>
-    </div>
-</div>
 @section('content')
 <div class="row mb-5" style="margin-top: 100px">
     <h4 class="fw-semibold text-center mb-5">Cari Buku Kesukaanmu..</h4>
