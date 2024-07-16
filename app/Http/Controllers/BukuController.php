@@ -49,6 +49,7 @@ class BukuController extends Controller
             'tahun_terbit' => 'required',
             'deskripsi_buku' => 'required',
             'stok_buku' => 'required',
+            'cover_buku' => 'required|image|mimes:jpeg,jpg,png|max:2048'
         ]);
 
         if($request->file('cover_buku')){

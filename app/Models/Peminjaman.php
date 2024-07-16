@@ -22,12 +22,16 @@ class Peminjaman extends Model
     protected $casts = [
       'tanggal_peminjaman' => 'datetime',
       'tanggal_pengembalian' => 'datetime',
-  ];
+    ];
     public function buku(){
       return $this->belongsTo(Buku::class);
     }
     public function user(){
       return $this->belongsTo(User::class);
+    }
+
+    public function pengembalian(){
+      return $this->hasOne(Pengembalian::class);
     }
 
     public static function booted(){

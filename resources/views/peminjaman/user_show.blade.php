@@ -14,6 +14,13 @@
                     </div>
                     <p class="fw-bold mt-5" style="font-size: 12px">{{ $d->buku->judul }}</p>
                     <p class="text-muted">{{ $d->buku->penulis }}</p>
+                    <a href="{{ route('pengembalian.index',['peminjaman_id' => $d->id]) }}" class="btn btn-success">
+                        <div class="d-flex align-items-center justify-content-center">
+                            <i class="fa-solid fa-book-bookmark me-1"></i>
+                            <i class="fa-solid fa-right-left"></i>
+                            <p class="m-0 p-0 ms-3">Kembaliin buku</p>
+                        </div>
+                    </a>
                 </div>
             </div>
         </a>

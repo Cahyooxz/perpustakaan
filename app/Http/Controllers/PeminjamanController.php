@@ -31,7 +31,7 @@ class PeminjamanController extends Controller
         }
 
         $buku = $buku->get();
-        
+
         return view('peminjaman.user_index',[
             'buku' => $buku,
             'wishlist' => $wishlist
@@ -54,9 +54,9 @@ class PeminjamanController extends Controller
         $user = Auth::user()->id;
         $buku = $request->id_buku;
 
-        $punyabuku = Peminjaman::where('buku_id',$request->id_buku)->get();
+        $punyabuku = Peminjaman::where('buku_id',$request->id_buku)->where('user_id',$user)->first();
 
-        if($punyabuku->isEmpty()){
+        if($punyabuku === null){
             $data = Peminjaman::create([
                'user_id' => $user,
                'buku_id' => $buku,
@@ -65,8 +65,12 @@ class PeminjamanController extends Controller
                'status' => 1,
             ]);
             return redirect()->route('peminjaman.show')->with('success','Buku berhasil dipinjam!');
-        }
-        else{
+        }elseif($punyabuku->where('status',0)){
+            $punyabuku->update([
+                'status' => 1
+            ]);
+            return redirect()->route('peminjaman.show')->with('success','Buku berhasil dipinjam!');
+        }else{
             return redirect()->route('buku.show',['id' => $buku])->with('fail_pinjam','kamu udah pinjam buku ini :) ');
         } 
     }
@@ -76,7 +80,7 @@ class PeminjamanController extends Controller
      */
     public function show()
     {
-        $bukusaya = Peminjaman::with(['user','buku'])->where('user_id',Auth::user()->id)->get();
+        $bukusaya = Peminjaman::with(['user','buku'])->where('user_id',Auth::user()->id)->where('status',1)->get();
         return view('peminjaman.user_show',[
             'buku' => $bukusaya
         ]);

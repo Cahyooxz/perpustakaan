@@ -7,7 +7,7 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
-          <a class="nav-link {{ Request::is('dashboard') ? 'active' : ''}}" aria-current="page" href="{{ route('dashboard') }}">Dashboard</a>
+          <a class="nav-link {{ Request::is('dashboard') ? 'active' : ''}}" aria-current="page" href="{{ route('dashboard') }}"><i class="fa-solid fa-house-chimney me-2"></i>Dashboard</a>
         </li>
         @if(Auth::user()->role == 1 || Auth::user()->role == 2)
           <li class="nav-item">
@@ -18,13 +18,13 @@
           </li>
         @elseif(Auth::user()->role == 3)
           <li class="nav-item">
-            <a class="nav-link {{ Request::is('peminjaman_buku') ? 'active' : ''}}" aria-current="page" href="{{ route('peminjaman.user_index') }}">Pinjam Buku</a>
+            <a class="nav-link {{ Request::is('peminjaman_buku') ? 'active' : ''}}" aria-current="page" href="{{ route('peminjaman.user_index') }}"><i class="fa-solid fa-book me-2"></i>Pinjam Buku</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link {{ Request::is('pinjaman_bukuku') ? 'active' : ''}}" aria-current="page" href="{{ route('peminjaman.show') }}">Pinjamanku</a>
+            <a class="nav-link {{ Request::is('pinjaman_bukuku') ? 'active' : ''}}" aria-current="page" href="{{ route('peminjaman.show') }}"><i class="fa-solid fa-book-bookmark me-2"></i>Pinjamanku</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link {{ Request::is('wishlist') ? 'active' : ''}}" aria-current="page" href="{{ route('wishlist.index') }}">Wishlist </a>
+            <a class="nav-link {{ Request::is('wishlist') ? 'active' : ''}}" aria-current="page" href="{{ route('wishlist.index') }}"><i class="fa-solid fa-bookmark me-2"></i>Wishlist </a>
           </li>
         @endif
       </ul>
