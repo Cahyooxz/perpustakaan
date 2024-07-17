@@ -30,7 +30,7 @@
       </ul>
       <ul class="list-group text-light" style="list-style: none">
         <li class="dropdown">
-          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Kariska</a>
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">{{ Auth::user()->name }}</a>
           <ul class="dropdown-menu">
             <li><a class="dropdown-item text-purple" href="#"><i class="bi bi-person-fill me-3"></i>Profile</a></li>
             <li>

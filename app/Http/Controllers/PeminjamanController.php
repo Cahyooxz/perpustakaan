@@ -31,7 +31,6 @@ class PeminjamanController extends Controller
         }
 
         $buku = $buku->get();
-
         return view('peminjaman.user_index',[
             'buku' => $buku,
             'wishlist' => $wishlist
@@ -53,21 +52,16 @@ class PeminjamanController extends Controller
     {
         $user = Auth::user()->id;
         $buku = $request->id_buku;
+        $data_buku = Buku::where('id',$buku)->first();
 
-        $punyabuku = Peminjaman::where('buku_id',$request->id_buku)->where('user_id',$user)->first();
-
-        if($punyabuku === null){
+        $punyabuku = Peminjaman::where('buku_id',$request->id_buku)->where('user_id',$user)->where('status',1)->get();
+        if($punyabuku->isEmpty() && !$data_buku->stok = 0){
             $data = Peminjaman::create([
                'user_id' => $user,
                'buku_id' => $buku,
                'tanggal_peminjaman' => Carbon::now(),
                'tanggal_pengembalian' => Carbon::now()->addWeeks(2),
                'status' => 1,
-            ]);
-            return redirect()->route('peminjaman.show')->with('success','Buku berhasil dipinjam!');
-        }elseif($punyabuku->where('status',0)){
-            $punyabuku->update([
-                'status' => 1
             ]);
             return redirect()->route('peminjaman.show')->with('success','Buku berhasil dipinjam!');
         }else{

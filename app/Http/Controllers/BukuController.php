@@ -6,6 +6,7 @@ use App\Models\Buku;
 use App\Models\Peminjaman;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class BukuController extends Controller
 {
@@ -90,8 +91,10 @@ class BukuController extends Controller
     public function show($id)
     {
         $buku = Buku::findOrFail($id);
+        $peminjaman = Peminjaman::where('buku_id',$id)->where('user_id',Auth::user()->id)->where('status',1)->get();
         return view('buku.show',[
-            'buku' => $buku
+            'buku' => $buku,
+            'peminjaman' => $peminjaman
         ]);
     }
 

@@ -37,7 +37,8 @@
           </div>
           <div class="mt-3">
             <label for="" class="mb-3">Deskripsi Buku</label>
-            <input type="text" name="deskripsi_buku" class="form-control">
+            <textarea type="text" name="deskripsi_buku" class="form-control" cols="30" rows="10"></textarea>
+            {{-- <input type="text" name="deskripsi_buku" class="form-control"> --}}
             @error('deskripsi_buku')
             <small class="text-danger">{{ $message }}</small>
             @enderror
@@ -59,7 +60,7 @@
           </div>
           <div class="mt-5">
             <a href="{{ route('buku.index') }}" class="btn btn-secondary">Keluar</a>
-            <button type="submit" class="btn btn-primary">Simpan</button>
+            <button type="submit" class="button btn-purple px-3">Simpan</button>
           </div>
         </form>
       </div>

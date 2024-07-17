@@ -32,7 +32,7 @@
                 <p class="p-0 m-0 fw-semibold">Deskripsi Buku :</p>
                 <small class="text-muted p-0">{{ $buku->deskripsi }}</small>
               </div>
-              @if($buku->stok >= 1)
+              @if($buku->stok >= 1 && $peminjaman->isEmpty())
                 <div class="d-flex">
                   <button type="button" class="button bg-purple px-3 text-light ms-auto" data-bs-toggle="modal" data-bs-target="#modalPinjam">Pinjam dong!</button>
                 </div>
@@ -71,7 +71,7 @@
             </div>
             <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-            <button type="submit" class="btn btn-primary">Pinjam</button>
+            <button type="submit" class="button btn-purple px-3">Pinjam</button>
             </div>
         </div>
       </form>

@@ -48,9 +48,10 @@ class PengembalianController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store($peminjaman_id,$denda)
+    public function store(Request $request,$peminjaman_id)
     {
-
+        $denda = $request->denda;
+        
         $tanggal_pengembalian = Carbon::now();
 
         $peminjaman = Peminjaman::with(['user','buku'])->find($peminjaman_id);

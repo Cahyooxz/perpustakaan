@@ -44,5 +44,15 @@ class Peminjaman extends Model
           ]);
         }
       });
+      // static::updated(function ($peminjaman){
+      //   $buku = Buku::where('id',$peminjaman->buku_id)->first();
+      //   if($peminjaman->status === 1){
+      //     if($buku->stok >= 1){
+      //       $buku->update([
+      //         'stok' => $buku->stok - 1
+      //       ]);
+      //     }
+      //   }
+      // });
     }
 }

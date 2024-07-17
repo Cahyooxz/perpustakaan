@@ -43,7 +43,7 @@ Route::post('/wishlist_buku/save',[WishlistController::class,'store'])->name('wi
 Route::delete('/wishlist_buku/unsave/{buku_id}',[WishlistController::class,'destroy'])->name('wishlist.destroy');
 
 Route::get('/pengembalian_buku/{peminjaman_id}',[PengembalianController::class,'index'])->name('pengembalian.index');
-Route::post('/pengembalian_buku/save/{peminjaman_id}/denda{denda}',[PengembalianController::class,'store'])->name('pengembalian.store');
+Route::post('/pengembalian_buku/save/{peminjaman_id}',[PengembalianController::class,'store'])->name('pengembalian.store');
 
 
 Route::middleware('auth')->group(function () {

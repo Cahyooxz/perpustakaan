@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('Pengembalian', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('peminjaman_id')->constrained('Peminjaman');
+            $table->foreignId('peminjaman_id')->constrained('Peminjaman')->cascadeOnDelete();
             $table->date('tanggal_pengembalian_real');
             $table->integer('denda')->default(0);
             $table->timestamps();

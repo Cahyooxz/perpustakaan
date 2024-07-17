@@ -87,9 +87,10 @@
         </div>
         <div class="d-flex justify-content-end gap-3 mt-5">
           <button class="btn btn-secondary">Keluar</button>
-          <form action="{{ route('pengembalian.store',['peminjaman_id' => $peminjaman->id, 'denda' => $denda * $hari_keterlambatan]) }}" method="post">
+          <form action="{{ route('pengembalian.store',['peminjaman_id' => $peminjaman->id]) }}" method="post">
             @csrf
             @method('POST')
+            <input value="{{ $denda * $hari_keterlambatan  }}" type="number" class="d-none" name="denda">
             @if($denda * $hari_keterlambatan > 0)
               <button class="btn btn-danger">Kembalikan, dan bayar denda</button>
             @else
