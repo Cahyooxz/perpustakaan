@@ -30,7 +30,7 @@
           <td>{{ $d->tahun }}</td>
           <td>{{ $d->stok }}</td>
           <td>
-            <a href="{{ route('buku.show',['id' => $d->id]) }}" class="btn btn-primary mb-2"><i class="bi bi-pencil"></i></a>
+            <a href="{{ route('buku.edit',['id' => $d->id]) }}" class="btn btn-primary mb-2"><i class="bi bi-pencil"></i></a>
             <a href="{{ route('buku.show',['id' => $d->id]) }}" class="btn btn-warning mb-2"><i class="bi bi-info"></i></a>
             <form action="{{ route('buku.destroy',['id' => $d->id]) }}" method="POST">
               @csrf

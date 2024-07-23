@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Buku;
 use App\Models\Peminjaman;
+use App\Models\Ulasan;
 use App\Models\Wishlist;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -105,5 +106,21 @@ class PeminjamanController extends Controller
         $data->delete();
 
         return redirect()->route('peminjaman.index')->with('success','Data berhasil dihapus');
+    }
+    public function comment(Request $request,$user_id,$buku_id)
+    {
+        $request->validate([
+            'komentar' => 'required',
+        ]);
+
+        $data = [
+            'user_id' => $user_id,
+            'buku_id' => $buku_id,
+            'komentar' => $request->komentar,
+        ];
+
+        Ulasan::create($data);
+
+        return back();
     }
 }

@@ -43,6 +43,47 @@
       </div>
     </div>
   </div>
+  <div class="container mt-3">
+    <div class="card">
+      <div class="card-body">
+        <div class="container">
+          <div class="row">
+            <div class="col-12 mb-5">
+                <div class="d-flex align-items-center gap-3">
+                  <p class="fw-bold m-0">{{ Auth::user()->name }}</p>
+                  <small>berikan komentarmu</small>
+                </div>
+                <form action="{{ route('komentar.store',['user_id' => Auth::user()->id, 'buku_id' => $buku->id]) }}" method="post">
+                  @csrf
+                  @method('POST')
+                  <div class="d-flex align-items-center gap-3 mt-3">
+                    <textarea name="komentar" id="" cols="30" rows="5" class="form-control"></textarea>
+                    <button type="submit" class="text-purple border-0 bg-transparent"><i class="fa-solid fa-paper-plane"></i></button>
+                  </div>
+                </form>
+            </div>
+            @foreach ($komentar as $k)
+            <div class="col-12 mb-5">
+                <div class="d-flex align-items-center gap-3">
+                  <p class="fw-bold m-0">{{ $k->user->name }}</p>
+                  <small>{{ $k->user->updated_at->DiffForHumans() }}</small>
+                </div>
+                <div class="d-flex align-items-center gap-3 mt-3">
+                  <small>{{ $k->komentar }}</small>
+                  <div class="d-flex gap-3 ms-auto">
+                    <div class="d-flex flex-colum gap-3">
+                      <small>5</small>
+                      <button type="submit" class="border-0 bg-transparent text-purple"><i class="fa-regular fa-heart"></i></button>
+                    </div>
+                  </div>
+                </div>
+            </div>
+            @endforeach
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
 <!-- Modal -->
 <div class="modal fade" id="modalPinjam" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">

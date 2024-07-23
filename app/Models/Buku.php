@@ -26,4 +26,7 @@ class Buku extends Model
     public function wishlist(){
         return $this->hasMany(Wishlist::class);
     }
+    public function ulasan(){
+        return $this->hasMany(Ulasan::class);
+    }
 }
