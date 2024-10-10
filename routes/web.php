@@ -40,14 +40,15 @@ Route::middleware(['auth','verified'])->group(function(){
     Route::get('/pinjaman_bukuku',[PeminjamanController::class,'show'])->name('peminjaman.show');
     Route::post('/pinjaman_bukuku/komentar/{user_id}/{buku_id}',[PeminjamanController::class,'comment'])->name('komentar.store');
 });
-
-Route::get('/wishlist',[WishlistController::class,'index'])->name('wishlist.index');
-Route::post('/wishlist_buku/save',[WishlistController::class,'store'])->name('wishlist.store');
-Route::delete('/wishlist_buku/unsave/{buku_id}',[WishlistController::class,'destroy'])->name('wishlist.destroy');
-
-Route::get('/pengembalian_buku/{peminjaman_id}',[PengembalianController::class,'index'])->name('pengembalian.index');
-Route::post('/pengembalian_buku/save/{peminjaman_id}',[PengembalianController::class,'store'])->name('pengembalian.store');
-
+Route::middleware(['auth','verified'])->group(function(){
+    Route::get('/wishlist',[WishlistController::class,'index'])->name('wishlist.index');
+    Route::post('/wishlist_buku/save',[WishlistController::class,'store'])->name('wishlist.store');
+    Route::delete('/wishlist_buku/unsave/{buku_id}',[WishlistController::class,'destroy'])->name('wishlist.destroy');
+});
+Route::middleware(['auth','verified'])->group(function(){
+    Route::get('/pengembalian_buku/{peminjaman_id}',[PengembalianController::class,'index'])->name('pengembalian.index');
+    Route::post('/pengembalian_buku/save/{peminjaman_id}',[PengembalianController::class,'store'])->name('pengembalian.store');
+});
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
