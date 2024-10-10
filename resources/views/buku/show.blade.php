@@ -2,7 +2,7 @@
 @section('content')
 <div class="row">
   <div class="container mt-5">
-    <div class="card">
+    <div class="shadow-sm p-5 rounded">
       <div class="card-body">
         <div class="row px-3 py-3">
           <div class="col-12 mb-3 col-md-3 mb-md-0">
@@ -44,29 +44,31 @@
     </div>
   </div>
   <div class="container mt-3">
-    <div class="card">
+    <div class="shadow-sm p-5 rounded bg-body-tertiary">
       <div class="card-body">
         <div class="container">
           <div class="row">
-            <div class="col-12 mb-5">
-                <div class="d-flex align-items-center gap-3">
-                  <p class="fw-bold m-0">{{ Auth::user()->name }}</p>
-                  <small>berikan komentarmu</small>
-                </div>
-                <form action="{{ route('komentar.store',['user_id' => Auth::user()->id, 'buku_id' => $buku->id]) }}" method="post">
-                  @csrf
-                  @method('POST')
-                  <div class="d-flex align-items-center gap-3 mt-3">
-                    <textarea name="komentar" id="" cols="30" rows="5" class="form-control"></textarea>
-                    <button type="submit" class="text-purple border-0 bg-transparent"><i class="fa-solid fa-paper-plane"></i></button>
+            @if(!$peminjaman->isEmpty())
+              <div class="col-12 mb-5">
+                  <div class="d-flex align-items-center gap-3">
+                    <p class="fw-bold m-0">{{ Auth::user()->name }}</p>
+                    <small>berikan komentarmu</small>
                   </div>
-                </form>
+                  <form action="{{ route('komentar.store',['user_id' => Auth::user()->id, 'buku_id' => $buku->id]) }}" method="post">
+                    @csrf
+                    @method('POST')
+                    <div class="d-flex align-items-center gap-3 mt-3">
+                      <textarea name="komentar" id="" cols="30" rows="5" class="form-control"></textarea>
+                      <button type="submit" class="text-purple border-0 bg-transparent"><i class="fa-solid fa-paper-plane"></i></button>
+                    </div>
+                  </form>
             </div>
+            @endif
             @foreach ($komentar as $k)
             <div class="col-12 mb-5">
                 <div class="d-flex align-items-center gap-3">
                   <p class="fw-bold m-0">{{ $k->user->name }}</p>
-                  <small>{{ $k->user->updated_at->DiffForHumans() }}</small>
+                  <small>{{ $k->created_at->DiffForHumans() }}</small>
                 </div>
                 <div class="d-flex align-items-center gap-3 mt-3">
                   <small>{{ $k->komentar }}</small>

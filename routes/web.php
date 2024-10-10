@@ -20,11 +20,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
-Route::get('/dashboard',[DashboardController::class,'index'])->middleware(['auth', 'verified'])->name('dashboard');
+Route::get('/',[DashboardController::class,'index'])->name('dashboard');
 
 Route::middleware(['auth','verified','role:admin'])->prefix('daftar_buku')->group(function(){
     Route::get('/',[BukuController::class,'index'])->name('buku.index');
@@ -36,14 +32,14 @@ Route::middleware(['auth','verified','role:admin'])->prefix('daftar_buku')->grou
 });
 Route::get('/rincian/{id}',[BukuController::class,'show'])->name('buku.show')->middleware(['auth','verified']);
 
-
-Route::get('/daftar/peminjaman_buku',[PeminjamanController::class,'index'])->name('peminjaman.index');
-Route::get('peminjaman_buku',[PeminjamanController::class,'user_index'])->name('peminjaman.user_index');
-Route::post('/peminjaman_buku/save',[PeminjamanController::class,'store'])->name('peminjaman.store');
-Route::delete('/peminjaman_buku/delete/{id}',[PeminjamanController::class,'destroy'])->name('peminjaman.destroy');
-Route::get('/pinjaman_bukuku',[PeminjamanController::class,'show'])->name('peminjaman.show');
-Route::post('/pinjaman_bukuku/komentar/{user_id}/{buku_id}',[PeminjamanController::class,'comment'])->name('komentar.store');
-
+Route::middleware(['auth','verified'])->group(function(){
+    Route::get('/daftar/peminjaman_buku',[PeminjamanController::class,'index'])->name('peminjaman.index');
+    Route::get('peminjaman_buku',[PeminjamanController::class,'user_index'])->name('peminjaman.user_index');
+    Route::post('/peminjaman_buku/save',[PeminjamanController::class,'store'])->name('peminjaman.store');
+    Route::delete('/peminjaman_buku/delete/{id}',[PeminjamanController::class,'destroy'])->name('peminjaman.destroy');
+    Route::get('/pinjaman_bukuku',[PeminjamanController::class,'show'])->name('peminjaman.show');
+    Route::post('/pinjaman_bukuku/komentar/{user_id}/{buku_id}',[PeminjamanController::class,'comment'])->name('komentar.store');
+});
 
 Route::get('/wishlist',[WishlistController::class,'index'])->name('wishlist.index');
 Route::post('/wishlist_buku/save',[WishlistController::class,'store'])->name('wishlist.store');

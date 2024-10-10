@@ -6,7 +6,7 @@
         <form action="{{ route('peminjaman.user_index') }}" method="GET">
             <div class="row">
                 <div class="col-11">
-                    <input type="text" placeholder="Masukan Judul Buku anda di sini :)" class="form-control" name="search" value="{{ request()->input('search') }}">
+                    <input type="text" placeholder="Cari Buku yang kamu suka di sini :)" class="form-control" name="search" value="{{ request()->input('search') }}">
                 </div>
                 <div class="col-1">
                     <button type="submit" class="button btn-purple px-3"><i class="bi bi-search"></i></button>
@@ -21,20 +21,22 @@
                 <a href="{{ route('buku.show',['id' => $d->id]) }}" class="text-decoration-none">
                     <div class="card border-0 pt-3 pb-0 shadow-sm">
                         <div class="d-flex justify-content-end me-3 mt-3 mb-3">
-                            @if($wishlist->where('buku_id',$d->id)->isEmpty())
-                            <form action="{{ route('wishlist.store') }}" method="post">
-                                @csrf
-                                @method('POST')
-                                <input type="number" value="{{ $d->id }}" name="buku_id" class="d-none">
-                                <button type="submit" class="border-0 fs-2 lh-0"><i class="fa-regular fa-bookmark text-purple lh-0"></i></button>
-                            </form>
-                            @else
-                            <form action="{{ route('wishlist.destroy',['buku_id' => $d->id]) }}" method="post">
-                                @csrf
-                                @method('DELETE')
-                                <input type="number" value="{{ $d->id }}" name="buku_id" class="d-none">
-                                <button type="submit" class="border-0 fs-2 lh-0"><i class="fa-solid fa-bookmark text-purple lh-0"></i></button>
-                            </form>
+                            @if(Auth::user())
+                                @if($wishlist->where('buku_id',$d->id)->isEmpty())
+                                <form action="{{ route('wishlist.store') }}" method="post">
+                                    @csrf
+                                    @method('POST')
+                                    <input type="number" value="{{ $d->id }}" name="buku_id" class="d-none">
+                                    <button type="submit" class="border-0 fs-2 lh-0"><i class="fa-regular fa-bookmark text-purple lh-0"></i></button>
+                                </form>
+                                @else
+                                <form action="{{ route('wishlist.destroy',['buku_id' => $d->id]) }}" method="post">
+                                    @csrf
+                                    @method('DELETE')
+                                    <input type="number" value="{{ $d->id }}" name="buku_id" class="d-none">
+                                    <button type="submit" class="border-0 fs-2 lh-0"><i class="fa-solid fa-bookmark text-purple lh-0"></i></button>
+                                </form>
+                                @endif
                             @endif
                         </div>
                         <div class="card-body rounded d-flex justify-content-center align-items-center flex-column">
@@ -52,20 +54,22 @@
                 <a href="{{ route('buku.show',['id' => $d->id]) }}" class="text-decoration-none">
                     <div class="card border-0 pt-3 pb-0 shadow-sm">
                         <div class="d-flex justify-content-end me-3 mt-3 mb-3">
-                            @if($wishlist->where('buku_id',$d->id)->isEmpty())
-                            <form action="{{ route('wishlist.store') }}" method="post">
-                                @csrf
-                                @method('POST')
-                                <input type="number" value="{{ $d->id }}" name="buku_id" class="d-none">
-                                <button type="submit" class="border-0 fs-2 lh-0"><i class="fa-regular fa-bookmark text-purple lh-0"></i></button>
-                            </form>
-                            @else
-                            <form action="{{ route('wishlist.destroy',['buku_id' => $d->id]) }}" method="post">
-                                @csrf
-                                @method('DELETE')
-                                <input type="number" value="{{ $d->id }}" name="buku_id" class="d-none">
-                                <button type="submit" class="border-0 fs-2 lh-0"><i class="fa-solid fa-bookmark text-purple lh-0"></i></button>
-                            </form>
+                            @if(Auth::user())
+                                @if($wishlist->where('buku_id',$d->id)->isEmpty())
+                                <form action="{{ route('wishlist.store') }}" method="post">
+                                    @csrf
+                                    @method('POST')
+                                    <input type="number" value="{{ $d->id }}" name="buku_id" class="d-none">
+                                    <button type="submit" class="border-0 fs-2 lh-0"><i class="fa-regular fa-bookmark text-purple lh-0"></i></button>
+                                </form>
+                                @else
+                                <form action="{{ route('wishlist.destroy',['buku_id' => $d->id]) }}" method="post">
+                                    @csrf
+                                    @method('DELETE')
+                                    <input type="number" value="{{ $d->id }}" name="buku_id" class="d-none">
+                                    <button type="submit" class="border-0 fs-2 lh-0"><i class="fa-solid fa-bookmark text-purple lh-0"></i></button>
+                                </form>
+                                @endif
                             @endif
                         </div>
                         <div class="card-body rounded d-flex justify-content-center align-items-center flex-column">

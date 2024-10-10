@@ -14,7 +14,11 @@ class DashboardController extends Controller
      */
     public function index()
     {
-        $wishlist = Wishlist::where('user_id',Auth::user()->id)->get();
+        if(Auth::user()){
+            $wishlist = Wishlist::where('user_id',Auth::user()->id)->get();
+        }else{
+            $wishlist = 0;
+        }
 
         $buku = Buku::whereNot('cover',null)->get();
 

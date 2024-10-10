@@ -25,7 +25,12 @@ class PeminjamanController extends Controller
     
     public function user_index(Request $request)
     {
-        $wishlist = Wishlist::where('user_id',Auth::user()->id)->get();
+        if(Auth::user()){
+            $wishlist = Wishlist::where('user_id',Auth::user()->id)->get();
+        }else{
+            $wishlist = 0;
+        }
+
         $buku = Buku::query();
         if($request->has('search')){
             $buku->where('judul','LIKE','%'.$request->search.'%');

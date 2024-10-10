@@ -94,7 +94,7 @@ class BukuController extends Controller
     {
         $buku = Buku::findOrFail($id);
         $peminjaman = Peminjaman::where('buku_id',$id)->where('user_id',Auth::user()->id)->where('status',1)->get();
-        $komentar = Ulasan::with(['user','buku'])->where('buku_id',$id)->get();
+        $komentar = Ulasan::with(['user','buku'])->where('buku_id',$id)->orderBy('updated_at','desc')->get();
         return view('buku.show',[
             'buku' => $buku,
             'peminjaman' => $peminjaman,
